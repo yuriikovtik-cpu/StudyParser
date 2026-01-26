@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
@@ -50,7 +52,10 @@ class FindInfo:
             productList['specifications'] = None
 
         df = pd.DataFrame([productList])
-        df.to_csv(r'D:\Python\PycharmProjects\Selenium\project\result\productSelenium.csv', index=False)
+        output_dir = r'D:\Python\PycharmProjects\Selenium\project\result'
+        os.makedirs(output_dir, exist_ok=True)
+        output_file = os.path.join(output_dir, 'product.csv')
 
+        df.to_csv(output_file, index=False)
         return productList
 
